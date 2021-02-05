@@ -26,7 +26,7 @@ url = "https://us1.locationiq.com/v1/search.php" #Using the LocationIQ API to co
                                                  #API can be used to collect boundaries of neighborhoods as well!!
                                                  #(^USEFUL FOR VISUALIZATION^)
 data = {
-    'key': 'b5225faf9eedbb',
+    'key': '', #Enter key here
     'q': 'Jackson Heights New York City',
     'format': 'json'
 }
@@ -36,13 +36,8 @@ import time
 latitudes = []
 longitudes = []
 
-t = 0
-for e in nycDF["RegionName"]:
-  #t =t +1   #This is for testing how long between requests 
-  #if t > 10:#This is for testing how long between requests
-  #  break   #
-  print(e)
-  data['q'] = e + ' New York City USA'
+for region in nycDF["RegionName"]:
+  data['q'] = region + ' New York City USA'
   response = requests.get(url, params=data)
   answer = response.json()
   time.sleep(1)
